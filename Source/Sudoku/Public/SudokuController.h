@@ -26,6 +26,8 @@ struct FEnlapsedTime
 	int32 Seconds;
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBoardCompleted);
+
 UCLASS()
 class SUDOKU_API ASudokuController : public AActor
 {
@@ -85,6 +87,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bIsGamePlaying;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnBoardCompleted FOnBoardCompleted;
 
 	FTimerHandle TimerHandle;
 

@@ -18,8 +18,6 @@ ASudokuController::ASudokuController()
 void ASudokuController::BeginPlay()
 {
 	Super::BeginPlay();
-
-	ElapsedTimeSeconds = 0.f;
 	
 }
 
@@ -61,6 +59,7 @@ TArray<int32> ASudokuController::Shuffle(int32 listSize, int32 startIndex)
 
 void ASudokuController::SetupSudoku(int32 SudokuBase, EGameDifficulty difficulty)
 {
+	ElapsedTimeSeconds = 0.f;
 	Base = SudokuBase;
 	CellSize = Base * Base;
 	TArray<int32> rows;
@@ -150,6 +149,8 @@ void ASudokuController::CheckBoard(ACell* Cell)
 				cell->FOnCellGroupCompleted.Broadcast();
 			}
 		}
+		FOnBoardCompleted.Broadcast();
+		PauseGame();
 	}
 }
 
